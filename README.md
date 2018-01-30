@@ -6,14 +6,10 @@ instance on Heroku.
 Prerequisites
 
 - node 8.0.0 or newer
-- heroku cli installed (`which heroku`)
-- heroku cli authenticated (`heroku whoami`)
+- docker-compose
 - wget
 - git
 - yarn
-
-
-Start [here](00-oidc-minimal).
 
 NB
 ---

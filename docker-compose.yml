@@ -1,0 +1,34 @@
+version: '3.3'
+services:
+
+  app:
+    build:
+      args:
+        ENVIRONMENT: development
+        CLEAR_BUILD_DEPENDENCIES: 'false'
+      context: .
+    command: tail -f /dev/null
+    depends_on:
+      - redis
+    environment:
+      NODE_ENV: development
+      HEROKU_APP_NAME: oidcprovider
+      PORT: 4000
+      SECURE_KEY: B273A0B3D5D7A5069108EB9760683C8CCBA2E39AC7BBD85743AFEA4505260876,2B671BA33D83784A58407396397814252310F683174D864A54BEAA2CC5B9DCE
+      REDIS_URL: redis://redis:6379
+    ports:
+      - '4000:4000'
+      - '9229:9229'
+    volumes:
+      - '.:/code'
+      - /code/node_modules
+
+  redis:
+    image: redis:3.2-alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - 'redis:/data'
+
+volumes:
+  redis: {}
